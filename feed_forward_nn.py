@@ -44,7 +44,7 @@ expected[sp.arange(N), y] = 1 # is only 1 for the correct digit
 W1 = sp.random.rand(785, 30)
 
 # weights for output neuron inputs, w0 is bias
-# 30 inputs + 1 bias, 10 output neurons
+# 30 inputs + 1 bias, 10 output labels
 W2 = sp.random.rand(31, 10)
 
 # activation function
