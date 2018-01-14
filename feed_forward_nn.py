@@ -17,7 +17,7 @@ N = len(X)
 L = 10 # number of labels
 
 '''
-y is the label for each input, so y would look something like:
+y is the label for each example, so y would look something like:
     [5, 9, 4, ...]
 
 which means that ex0 is an image of the number 5, ex1 is 9, ex2 is 4, etc.,
