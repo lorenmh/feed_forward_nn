@@ -11,8 +11,16 @@ train_data = json.load(train_file)
 sigm = lambda x: 1/(1+sp.exp(-x))
 
 # 60000x784 input matrix
-X = sp.array([ex['image'] for ex in train_data]) / 255
+X = sp.array([ex['image'] for ex in train_data])
+X = X/255 # normalize
+
 y = sp.array([ex['label'] for ex in train_data])
+
+N = len(X)
+L = 10 # number of labels
+
+expected = sp.zeros([N,L])
+expected[sp.arange(N), y] = 1
 
 # weights for first layer 30x785
 W1 = sp.random.rand(785, 30)
@@ -34,5 +42,4 @@ max_2 = np.max(apply_2, axis=1)
 normalized_2 = apply_2/max_2[:, sp.newaxis]
 output_2 = sigm(normalized_2)
 
-yhat = np.argmax(output_2, axis=1)
-err = yhat - y
+err = output_2 - expected
