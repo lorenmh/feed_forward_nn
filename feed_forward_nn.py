@@ -16,6 +16,9 @@ y = sp.array([ex['label'] for ex in train_data])
 N = len(X)
 L = 10 # number of labels
 
+# learning rate
+n = 0.01
+
 '''
 y is the label for each example, so y would look something like:
     [5, 9, 4, ...]
@@ -65,5 +68,13 @@ norm_2 = weighted_2/max_2[:, sp.newaxis]        # normalize by dividing by max
 output_2 = sigm(norm_2)                         # apply activation function
 
 # output_2 is now the predicted output
+output_err = output_2 - expected
+# total MSE for logging, this *should* be going down
+classify_err = sp.sum(sp.sum(sp.absolute(output_err))**2)/N
 
-err = output_2 - expected
+# backprop output neuron
+W2 = W2 - 2 * n * input_2.T.dot(output_err * output_2 * (1 - output_2))
+
+# looking up backprop for hidden
+#backprop_err_1 =
+#W1 =
